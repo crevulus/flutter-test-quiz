@@ -14,6 +14,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> { // adding _ turns public class to private class
   var _questionIndex = 0;
+  int _answerIndex;
 
   final _questions = const [ // const = constant value at compile time. Can add in front of value too, unlike JS.
     {
@@ -21,21 +22,24 @@ class _MyAppState extends State<MyApp> { // adding _ turns public class to priva
       'answers': [
         'Everything',
         'Nothing'
-      ]
+      ],
+      'correct': 0,
     },
     {
       'question': 'Where is the love?',
       'answers': [
         'Everywhere',
         'Nowhere'
-      ]
+      ],
+      'correct': 0,
     },
     {
       'question': 'How deep is your love?',
       'answers': [
         'Half full',
         'Half empty'
-      ]
+      ],
+      'correctIndex': 0,
     },
   ];
 
@@ -64,3 +68,10 @@ class _MyAppState extends State<MyApp> { // adding _ turns public class to priva
     );
   }
 }
+
+// can't figure out how to extract score.
+
+//for (int i = 0; )
+//if (_questions[_answerIndex] == _questions[_questionIndex]['correctIndex']) {
+//print('correct!');
+//}
