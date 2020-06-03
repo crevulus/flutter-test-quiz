@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './question.dart';
+import './answer.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,17 +25,35 @@ class _MyAppState extends State<MyApp> { // adding _ turns public class to priva
   @override
   Widget build(BuildContext context) {
     var questions = [
-      'What\'s love got to do with it?',
-      'Where is the love?',
-      'How deep is your love?'
+      {
+        'question': 'What\'s love got to do with it?',
+        'answers': [
+          'Everything',
+          'Nothing'
+        ]
+      },
+      {
+        'question': 'Where is the love?',
+        'answers': [
+          'Everywhere',
+          'Nowhere'
+        ]
+      },
+      {
+        'question': 'How deep is your love?',
+        'answers': [
+          'Half full',
+          'Half empty'
+        ]
+      },
     ];
     return MaterialApp(home: Scaffold(
       appBar: AppBar(title: Text('My First App')),
       body: Column(children: [
-        Question(questions[_questionIndex]),
-        RaisedButton(child: Text('A1'), onPressed: _givenAnswer), // pass name of function as onPressed requires a fn, not the return value of a fn
-        RaisedButton(child: Text('A2'), onPressed: _givenAnswer),
-        RaisedButton(child: Text('A3'), onPressed: _givenAnswer)
+        Question(questions[_questionIndex]['question']),
+        ...(questions[_questionIndex]['answers'] as List<String>).map((answer) { // map makes a new list based on original
+          return Answer(_givenAnswer, answer);
+        }).toList() // returns iterable parent fn not list, so need to call toList
       ],))
     );
   }
