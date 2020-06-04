@@ -17,14 +17,13 @@ class Result extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column( // Column takes all available height of viewport
-        children: [
-          Text(
-            resultPhrase,
-          ),
-          RaisedButton(child: Text('Reset'), onPressed: this.resetHandler),
-        ]
+      child: Column(// Column takes all available height of viewport
+          children: [
+        Text(
+          resultPhrase,
         ),
+        RaisedButton(child: Text('Reset'), onPressed: this.resetHandler),
+      ]),
     );
   }
 }
