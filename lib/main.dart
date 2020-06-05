@@ -72,6 +72,11 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       _selectedIndex = index;
     });
+    _pushSaved();
+  }
+
+  void _pushSaved() {
+    Navigator.of(context).push();
   }
 
   @override
