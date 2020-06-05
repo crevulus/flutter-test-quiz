@@ -14,20 +14,18 @@ class ListicleState extends State<Listicle> {
     return Column(
       children: <Widget>[
         SizedBox(
-          height: 400,
+          height: 300,
           child: ListView.builder(
-              primary: false,
-              physics: const AlwaysScrollableScrollPhysics(),
-              shrinkWrap: true,
-              padding: const EdgeInsets.all(8),
-              itemCount: entries.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  height: 100,
-                  color: Colors.green[colorCodes[index]],
-                  child: Center(child: Text('Entry ${entries[index]}')),
-                );
-              }),
+            primary: false,
+            padding: const EdgeInsets.all(8),
+            itemCount: entries.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                height: 100,
+                color: Colors.green[colorCodes[index]],
+                child: Center(child: Text('Entry ${entries[index]}')),
+              );
+            }),
         ),
       ],
     );

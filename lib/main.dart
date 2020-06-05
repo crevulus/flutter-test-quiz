@@ -18,6 +18,7 @@ class _MyAppState extends State<MyApp> {
   // adding _ turns public class to private class
   var _questionIndex = 0;
   var _totalScore = 0;
+  int _selectedIndex = 0;
 
   final _questions = const [
     // const = constant value at compile time. Can add in front of value too, unlike JS.
@@ -67,13 +68,19 @@ class _MyAppState extends State<MyApp> {
     print(_questionIndex);
   }
 
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
-      appBar: AppBar(title: Text('My First App')),
-      body: _questionIndex < _questions.length
-          ? Column(
+          appBar: AppBar(title: Text('My First App')),
+          body: _questionIndex < _questions.length
+            ? Column(
               children: [
                 Question(_questions[_questionIndex]['question']),
                 ...(_questions[_questionIndex]['answers']
@@ -85,13 +92,33 @@ class _MyAppState extends State<MyApp> {
                       answer[
                           'text']); // _givenAnswer executed when onPressed is triggered
                 }).toList(),
-                Text('Test listicle'),// returns iterable parent fn not list, so need to call toList
+                Text(
+                  'Test listicle',
+                  style: TextStyle(fontSize: 28),
+                ), // returns iterable parent fn not list, so need to call toList
                 Listicle(),
               ],
             )
           : Result(_totalScore, _resetQuiz),
+          bottomNavigationBar: BottomNavigationBar(
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.help_outline),
+                title: Text('Quiz'),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.check_circle),
+                title: Text('Results'),
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.account_box),
+                title: Text('Account'),
+              ),
+            ],
+            currentIndex: _selectedIndex,
+            selectedItemColor: Colors.blue[600],
+            onTap: _onItemTapped,
+          ),
     ));
   }
 }
-
-
